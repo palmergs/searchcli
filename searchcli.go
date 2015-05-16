@@ -25,7 +25,7 @@ func main() {
 
 	if *histoCount > 0 {
 		histo := NewHistoEntries(pool.Matches)
-		histo.PrintList(*histoCount)
+		histo.PrintList(*histoCount, true)
 	} else {
 		writer := bufio.NewWriter(os.Stdout)
 		defer writer.Flush()
