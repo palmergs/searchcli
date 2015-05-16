@@ -13,6 +13,7 @@ var root = tokensearch.NewTokenNode()
 
 func main() {
 	importFile := flag.String("f", "", "prepopulate with file")
+	histoCount := flag.Int("h", 0, "number of histogram items to return (instead of JSON)")
 	flag.Parse()
 
 	fmt.Printf("Prepopulate tree with %s...\n", *importFile)
@@ -22,7 +23,12 @@ func main() {
 	pool := tokensearch.NewTokenNodeVisitorPool(root)
 	pool.AdvanceThrough(reader)
 
-	writer := bufio.NewWriter(os.Stdout)
-	defer writer.Flush()
-	json.NewEncoder(writer).Encode(pool.Matches)
+	if *histoCount > 0 {
+		histo := NewHistoEntries(pool.Matches)
+		histo.PrintList(*histoCount)
+	} else {
+		writer := bufio.NewWriter(os.Stdout)
+		defer writer.Flush()
+		json.NewEncoder(writer).Encode(pool.Matches)
+	}
 }
