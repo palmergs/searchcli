@@ -1,23 +1,24 @@
 package main
 
 import (
-	"os"
-	"fmt"
-	"flag"
 	"bufio"
 	"encoding/json"
+	"flag"
+	"fmt"
 	"github.com/palmergs/tokensearch"
+	"os"
 )
 
 var root = tokensearch.NewTokenNode()
 
 func main() {
-	importFile := flag.String("f", "", "prepopulate with file")
+	importFile := flag.String("f", "", "prepopulate with JSON file")
 	histoCount := flag.Int("h", 0, "number of histogram items to return (instead of JSON)")
 	flag.Parse()
 
-	fmt.Printf("Prepopulate tree with %s...\n", *importFile)
+	fmt.Printf("Prepopulate tree with %s...", *importFile)
 	root.InsertFromFile(*importFile)
+	fmt.Printf("...done\n")
 
 	reader := bufio.NewReader(os.Stdin)
 	pool := tokensearch.NewTokenNodeVisitorPool(root)
