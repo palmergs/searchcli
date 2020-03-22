@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "label": "ring",
+    "category": "noun"
+  },
+  {
+    "id": 2,
+    "label": "sword",
+    "category": "noun"
+  },
+  {
+    "id", 3,
+    "label": "road",
+    "category": "noun"
+  }
+]
