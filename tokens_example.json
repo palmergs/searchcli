@@ -10,8 +10,23 @@
     "category": "noun"
   },
   {
-    "id", 3,
+    "id": 3,
     "label": "road",
+    "category": "noun"
+  },
+  {
+    "id": 4,
+    "label": "house",
+    "category": "noun"
+  },
+  {
+    "id": 5,
+    "label": "tree",
+    "category": "noun"
+  },
+  {
+    "id": 6,
+    "label": "plant",
     "category": "noun"
   }
 ]

@@ -2,14 +2,14 @@ package main
 
 import (
 	"fmt"
-	"sort"
 	"github.com/palmergs/tokensearch"
+	"sort"
 )
 
 type HistoEntry struct {
-	ident		int64
-	name		string
-	count		int
+	ident int64
+	name  string
+	count int
 }
 
 type HistoEntries []*HistoEntry
@@ -46,9 +46,14 @@ func (slice HistoEntries) Swap(i, j int) {
 
 func (slice HistoEntries) PrintList(limit int, header bool) {
 	sort.Sort(slice)
+	if limit > len(slice) {
+		limit = len(slice)
+	}
+
 	if header {
 		fmt.Println("ID\tValue\tCount")
 	}
+
 	for _, entry := range slice[:limit] {
 		fmt.Printf("%d\t%s\t%d\n", entry.ident, entry.name, entry.count)
 	}
